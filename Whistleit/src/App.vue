@@ -1,9 +1,13 @@
 <template>
-  <h1>branch created by Salman Irfan</h1>
-  <h2>started working on Admin Panel</h2>
-  <!-- <router-view /> -->
+  <Layout/>
 </template>
 
-<script setup>
-  //
+<script>
+import Layout from './layouts/Layout.vue';
+export default {
+  name: "App",
+  components: {
+    Layout,
+  }
+}
 </script>
