@@ -1,25 +1,75 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import UsersView from '../views/UsersView.vue'
+import TeamsView from '../views/TeamsView.vue'
+import DepartmentView from '../views/DepartmentView.vue'
+import ChannelView from '../views/ChannelView.vue'
+import AttachmentsView from '../views/AttachmentsView.vue'
+import IpSettingsView from '../views/IpSettingsView.vue'
+import AppsView from '../views/AppsView.vue'
+import PaymentView from '../views/PaymentView.vue'
 
 const routes = [
+  // Users View route
   {
-    path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
-      },
-    ],
+    path: "/",
+    component: UsersView,
+    name: "UsersView",
+    meta: { title: "Users" },
   },
-]
+  // Teams View route
+  {
+    path: "/teams",
+    component: TeamsView,
+    name: "TeamsView",
+    meta: { title: "Teams" },
+  },
+  // Department View route
+  {
+    path: "/department",
+    component: DepartmentView,
+    name: "DepartmentView",
+    meta: { title: "Teams" },
+  },
+  // Channel View route
+  {
+    path: "/channel",
+    component: ChannelView,
+    name: "ChannelView",
+    meta: { title: "Channel" },
+  },
+  // attachments View route
+  {
+    path: "/attachments",
+    component: AttachmentsView,
+    name: "AttachmentsView",
+    meta: { title: "Attachments" },
+  },
+  // ipsettings View route
+  {
+    path: "/ipsettings",
+    component: IpSettingsView,
+    name: "IpSettingsView",
+    meta: { title: "Ip Settings" },
+  },
+  // apps View route
+  {
+    path: "/apps",
+    component: AppsView,
+    name: "AppsView",
+    meta: { title: "Apps" },
+  },
+  // payment View route
+  {
+    path: "/payment",
+    component: PaymentView,
+    name: "PaymentView",
+    meta: { title: "Payment" },
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
 })
 

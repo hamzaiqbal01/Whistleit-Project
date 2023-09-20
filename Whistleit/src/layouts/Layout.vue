@@ -46,12 +46,14 @@
       <!-- Bottom buttons -->
       <v-divider></v-divider>
       <v-list>
+        <!-- back to chat button -->
         <v-list-item link @click="backToChat">
           <template v-slot:prepend>
             <v-icon>mdi-arrow-left-circle</v-icon>
           </template>
           <v-list-item-title>Back to Chat</v-list-item-title>
         </v-list-item>
+        <!-- logout button-->
         <v-list-item link @click="logout">
           <template v-slot:prepend>
             <v-icon>mdi-logout</v-icon>
@@ -60,9 +62,11 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar >
+    <!-- app bar -->
+    <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-app-bar-title>Application</v-app-bar-title>
+      <!-- bind this "Application" text with its title that is defind in tiems array -->
+      <v-app-bar-title  >{{ selectedTitle }}</v-app-bar-title>
     </v-app-bar>
     <!-- Main content -->
     <v-main>
@@ -75,7 +79,6 @@
 <!-- Setup script -->
 <script setup>
 import { ref } from "vue";
-
 const drawer = ref(null);
 </script>
 
@@ -83,7 +86,9 @@ const drawer = ref(null);
 <script>
 export default {
   name: "Layout",
-
+  props: {
+    title: String, // Prop to receive the dynamic title
+  },
   components: {},
 
   data: () => (
@@ -91,13 +96,17 @@ export default {
     {
       items: [
         { title: "Users", icon: "mdi-account", link: "/" },
-        { title: "Teams", icon: "mdi-account-group", link: "/add-post" },
-        { title: "Department", icon: "mdi-office-building", link: "/about" },
-        { title: "Channel", icon: "mdi-message", link: "/about" },
-        { title: "Attachments", icon: "mdi-attachment", link: "/about" },
-        { title: "IP Settings", icon: "mdi-wifi", link: "/about" },
-        { title: "Apps", icon: "mdi-apps", link: "/about" },
-        { title: "Payment", icon: "mdi-credit-card", link: "/about" },
+        { title: "Teams", icon: "mdi-account-group", link: "/teams" },
+        {
+          title: "Department",
+          icon: "mdi-office-building",
+          link: "/department",
+        },
+        { title: "Channel", icon: "mdi-message", link: "/channel" },
+        { title: "Attachments", icon: "mdi-attachment", link: "/attachments" },
+        { title: "IP Settings", icon: "mdi-wifi", link: "/ipsettings" },
+        { title: "Apps", icon: "mdi-apps", link: "/apps" },
+        { title: "Payment", icon: "mdi-credit-card", link: "/payment" },
       ],
       userName: "USER NAME",
       companyName: "Company Name",
@@ -112,6 +121,14 @@ export default {
     },
     logout() {
       // Implement your logout logic
+    },
+  },
+  computed: {
+    // This computed property returns the title based on the current route
+    selectedTitle() {
+      const currentRoute = this.$route;
+      const selectedItem = this.items.find((item) => item.link === currentRoute.path);
+      return selectedItem ? selectedItem.title : "Application";
     },
   },
 };
