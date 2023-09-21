@@ -45,7 +45,7 @@ export default {
       // Define the headings and data for the table
       tableHeadings: ["Team Name", "Total Members", "Created Date", "Actions"],
       teamsTableData: [],
-      teamNames: [],
+      teamNames: [], // pass the team names to UsersView.vue and AddUsersView.vue
     };
   },
   // create a life cycle method
@@ -59,6 +59,16 @@ export default {
       "Created At", // Hardcoded string
       "...", // Hardcoded string
     ]);
+    // Extract and store team names separately
+    this.teamNames = this.teamsTableData.map((teamData) => teamData[0]);
+    // Emit an event with the updated team names
+    this.$emit("team-names-updated", this.teamNames);
+    const apiTeamNamesArray =[]
+    const apiTeamNames = this.teamNames
+    for (let i in apiTeamNames) {
+      apiTeamNamesArray.push(apiTeamNames[i]);
+    }
+    console.log(apiTeamNamesArray)
   },
 };
 </script>
