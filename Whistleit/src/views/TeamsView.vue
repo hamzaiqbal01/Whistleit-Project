@@ -23,7 +23,7 @@
   <!-- table -->
   <TableComponent
     :headings="tableHeadings"
-    :data="tableData"
+    :data="teamsTableData"
     class="mr-15 ml-15 mx-auto"
   />
 </template>
@@ -32,6 +32,7 @@
 import ButtonComponent from "../components/commons/ButtonComponent";
 import SearchInputComponent from "../components/commons/SearchInputComponent";
 import TableComponent from "../components/commons/TableComponent";
+import TeamsApis from "../apiIntegrations/adminPanelApis/teamsApis";
 export default {
   name: "TeamsView",
   components: {
@@ -43,14 +44,21 @@ export default {
     return {
       // Define the headings and data for the table
       tableHeadings: ["Team Name", "Total Members", "Created Date", "Actions"],
-      tableData: [
-        ["Front End", "20", "1-Sep-2023", "..."],
-        ["Back End", "20", "1-Sep-2023", "..."],
-        ["Dev Ops", "20", "1-Sep-2023", "..."],
-        ["Data Science", "20", "1-Sep-2023", "..."],
-        // Add more data rows as needed
-      ],
+      teamsTableData: [],
+      teamNames: [],
     };
+  },
+  // create a life cycle method
+  async created() {
+    // Fetch team data from the API
+    this.teamsTableData = await TeamsApis.getAllTeams();
+    // Map the fetched data to match the table structure
+    this.teamsTableData = this.teamsTableData.map((team) => [
+      team.name, // Team Name from the API
+      "Total Members", // Hardcoded string
+      "Created At", // Hardcoded string
+      "...", // Hardcoded string
+    ]);
   },
 };
 </script>
