@@ -46,6 +46,8 @@ export default {
       tableData: [
         ["Front End", "20", "1-Sep-2023", "..."],
         ["Back End", "20", "1-Sep-2023", "..."],
+        ["Dev Ops", "20", "1-Sep-2023", "..."],
+        ["Data Science", "20", "1-Sep-2023", "..."],
         // Add more data rows as needed
       ],
     };

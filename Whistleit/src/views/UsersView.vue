@@ -49,6 +49,7 @@ import ButtonComponent from "../components/commons/ButtonComponent";
 import SearchInputComponent from "../components/commons/SearchInputComponent";
 import TableComponent from "../components/commons/TableComponent";
 import AddUserView from "./AddUserView.vue";
+import UserApis from "@/apiIntegrations/adminPanelApis/usersApis";
 export default {
   name: "UsersView",
   components: {
@@ -69,9 +70,7 @@ export default {
         "Actions",
       ],
       tableData: [
-        ["John Doe", "Admin", "Manager", "2023-01-15", "2023-09-20", "..."],
-        ["Jane Smith", "User", "Engineer", "2023-02-20", "2023-09-18", "..."],
-        // Add more data rows as needed
+        ["John Doe", "User", "Developer", "2023-01-15", "2023-09-20", "..."],
       ],
       // department teams
       teams: ["Front End", "Back End", "Dev Ops", "Data Science"],
@@ -82,11 +81,20 @@ export default {
   methods: {
     // Handler for adding users to the table
     addUsersToTable(data) {
-      // Update the tableData based on the selected team and users
+      // Update the table Data based on the selected team and users
       const { team, users } = data;
       users.forEach((user) => {
-        // Add a new row with user, role, and team (designation)
-        this.tableData.push([user, "User", team]);
+        // Add a new row with user, role, team (designation), joined date, and last activity
+        this.tableData.push([
+          user,
+          "User",
+          team,
+          user.created_at, // Use the created_at field as Joined Date
+          user.created_at, // Use the created_at field as Last Activity
+          "...",
+          console.log(user.created_at) // undefined
+        ]);
+        console.log(user) // email address
       });
     },
   },
