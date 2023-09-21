@@ -14,15 +14,15 @@
     <!-- add user button -->
     <!-- toggle the visibility of this "AddUserComponent" upon "Add User" button clicks -->
     <ButtonComponent
-      color="green"
-      text="Add User"
+      :color="showAddUser ? 'red' : 'green'"
+      :text="addUserButtonText"
       prepend-icon="mdi-account"
       class="mx-4 mt-4"
-      @click="showAddUser = !showAddUser"
+      @click="toggleAddUser"
     />
     <!-- export users button -->
     <ButtonComponent
-      color="green"
+      color="primary"
       text="Export Users"
       prepend-icon="mdi-download"
       class="mr-14 mt-4"
@@ -49,7 +49,6 @@ import ButtonComponent from "../components/commons/ButtonComponent";
 import SearchInputComponent from "../components/commons/SearchInputComponent";
 import TableComponent from "../components/commons/TableComponent";
 import AddUserView from "./AddUserView.vue";
-import UserApis from "@/apiIntegrations/adminPanelApis/usersApis";
 export default {
   name: "UsersView",
   components: {
@@ -77,8 +76,18 @@ export default {
       showAddUser: false, // Flag to control the visibility of AddUserView
     };
   },
+  // computed
+  computed: {
+    addUserButtonText() {
+      return this.showAddUser ? "Hide Table" : "Add User";
+    },
+  },
   // methods
   methods: {
+    // toggle add user button
+    toggleAddUser() {
+      this.showAddUser = !this.showAddUser;
+    },
     // Handler for adding users to the table
     addUsersToTable(data) {
       // Update the table Data based on the selected team and users
@@ -89,12 +98,10 @@ export default {
           user,
           "User",
           team,
-          user.created_at, // Use the created_at field as Joined Date
-          user.created_at, // Use the created_at field as Last Activity
+          "joined date",
+          "last activity",
           "...",
-          console.log(user.created_at) // undefined
         ]);
-        console.log(user) // email address
       });
     },
   },

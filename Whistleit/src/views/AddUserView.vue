@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="add-user-view"> <!-- Add a CSS class for styling -->
     <h1>Add User View</h1>
     <!-- Dropdown for selecting teams -->
     <v-select
@@ -38,7 +38,6 @@ export default {
       selectedTeam: null,
       selectedUsers: [],
       teams: ["Front End", "Back End", "Dev Ops", "Data Science"],
-      // users: ["User1", "User2", "User3", "User4"], // Dummy users
       users: [],
       userEmails: [], // Store user emails for the dropdown
     };
@@ -56,7 +55,19 @@ export default {
         team: this.selectedTeam,
         users: this.selectedUsers,
       });
+
+      // Clear the selected values in the dropdown menus
+      this.selectedTeam = null;
+      this.selectedUsers = [];
     },
   },
 };
 </script>
+
+<style scoped>
+.add-user-view {
+  background-color: lightgray; /* Change the background color as desired */
+  width: 50%; /* Set the width to 50% of the parent's width */
+  margin: 5% 25% 5% 25% !important; /* Center horizontally */
+}
+</style>
