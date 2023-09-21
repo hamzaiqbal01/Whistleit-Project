@@ -8,6 +8,7 @@ import AttachmentsView from '../views/AttachmentsView.vue'
 import IpSettingsView from '../views/IpSettingsView.vue'
 import AppsView from '../views/AppsView.vue'
 import PaymentView from '../views/PaymentView.vue'
+import AddUserView from '../views/AddUserView.vue'
 
 const routes = [
   // Users View route
@@ -65,6 +66,12 @@ const routes = [
     component: PaymentView,
     name: "PaymentView",
     meta: { title: "Payment" },
+  },
+  // Add User View route
+  {
+    path: "/adduser",
+    component: AddUserView,
+    name: "AddUserView",
   },
 ];
 

@@ -33,7 +33,7 @@ import ButtonComponent from "../components/commons/ButtonComponent";
 import SearchInputComponent from "../components/commons/SearchInputComponent";
 import TableComponent from "../components/commons/TableComponent";
 export default {
-  name: "TeamsView",
+  name: "DepartmentView",
   components: {
     ButtonComponent,
     SearchInputComponent,
