@@ -66,7 +66,7 @@
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <!-- bind this "Application" text with its title that is defind in tiems array -->
-      <v-app-bar-title  >{{ selectedTitle }}</v-app-bar-title>
+      <v-app-bar-title>{{ selectedTitle }}</v-app-bar-title>
     </v-app-bar>
     <!-- Main content -->
     <v-main>
@@ -127,7 +127,9 @@ export default {
     // This computed property returns the title based on the current route
     selectedTitle() {
       const currentRoute = this.$route;
-      const selectedItem = this.items.find((item) => item.link === currentRoute.path);
+      const selectedItem = this.items.find(
+        (item) => item.link === currentRoute.path
+      );
       return selectedItem ? selectedItem.title : "Application";
     },
   },

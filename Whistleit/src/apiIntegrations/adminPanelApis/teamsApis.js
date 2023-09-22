@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = "http://10.0.10.112:8000";
+import {BASE_URL} from "./usersApis"
 
 export default class TeamsApis {
   // 1. to get all the teams from the database

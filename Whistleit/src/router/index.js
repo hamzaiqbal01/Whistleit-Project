@@ -9,7 +9,8 @@ import IpSettingsView from '../views/IpSettingsView.vue'
 import AppsView from '../views/AppsView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import AddUserView from '../views/AddUserView.vue'
-
+// others views
+import LoginView from '../views/others/LoginView.vue'
 const routes = [
   // Users View route
   {
@@ -73,6 +74,13 @@ const routes = [
     component: AddUserView,
     name: "AddUserView",
   },
+  // others routes
+  // login route
+  {
+    path: "/login",
+    component: LoginView,
+    name: "LoginView",
+  }
 ];
 
 const router = createRouter({

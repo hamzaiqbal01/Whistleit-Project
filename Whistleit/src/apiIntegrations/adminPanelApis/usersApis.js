@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://10.0.10.112:8000";
+export const BASE_URL = "http://10.0.10.112:8000";
 
 export default class UserApis {
   // 1. to get all the users from the database
