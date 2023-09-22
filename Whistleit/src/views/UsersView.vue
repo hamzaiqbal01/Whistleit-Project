@@ -49,7 +49,6 @@ import ButtonComponent from "../components/commons/ButtonComponent";
 import SearchInputComponent from "../components/commons/SearchInputComponent";
 import TableComponent from "../components/commons/TableComponent";
 import AddUserView from "./AddUserView.vue";
-import teamNames from "../views/TeamsView.vue" // here i imorted teamNames from TeamsView where an api is used to get all the team names
 export default {
   name: "UsersView",
   components: {
@@ -73,7 +72,7 @@ export default {
         ["John Doe", "User", "Developer", "2023-01-15", "2023-09-20", "..."],
       ],
       // department teams
-      teams: ["Front End", "Back End", "Dev Ops", "Data Science"], // bring the teams name from api now
+      teams: [], // bring the teams name from api now
       showAddUser: false, // Flag to control the visibility of AddUserView
     };
   },
@@ -83,6 +82,7 @@ export default {
       return this.showAddUser ? "Hide Table" : "Add User";
     },
   },
+
   // methods
   methods: {
     // toggle add user button

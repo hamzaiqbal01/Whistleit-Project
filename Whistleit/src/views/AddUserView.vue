@@ -1,10 +1,11 @@
 <template>
-  <div class="add-user-view"> <!-- Add a CSS class for styling -->
+  <div class="add-user-view">
+    <!-- Add a CSS class for styling -->
     <h1>Add User View</h1>
     <!-- Dropdown for selecting teams -->
     <v-select
       v-model="selectedTeam"
-      :items="teams"
+      :items="teamNames"
       label="Select Team"
     ></v-select>
     <!-- Dropdown for selecting users -->
@@ -27,7 +28,8 @@
 <script>
 import ButtonComponent from "../components/commons/ButtonComponent";
 import UserApis from "../apiIntegrations/adminPanelApis/usersApis";
-import apiTeamNamesArray from "../views/TeamsView.vue"
+import apiTeamNamesArray from "../views/TeamsView.vue";
+import TeamsApis from "@/apiIntegrations/adminPanelApis/teamsApis";
 export default {
   name: "AddUserView",
   components: {
@@ -40,7 +42,7 @@ export default {
       teams: ["Front End", "Back End", "Dev Ops", "Data Science"], // also bring team names here from api too
       users: [],
       userEmails: [], // Store user emails for the dropdown
-
+      teamNames: [],
     };
   },
   // create a life cycle method
@@ -49,10 +51,13 @@ export default {
     // Extract user emails and populate the userEmails array
     this.userEmails = this.users.map((user) => user.email);
 
+    // extract teams from api
+    this.teamsTableData = await TeamsApis.getAllTeams();
+    this.teamNames = this.teamsTableData.map((team) => team.name);
   },
   methods: {
     addUsersToTable() {
-      console.log(apiTeamNamesArray)
+      
       // Emit an event with selectedTeam and selectedUsers
       this.$emit("add-users", {
         team: this.selectedTeam,
